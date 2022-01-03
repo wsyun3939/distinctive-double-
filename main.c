@@ -34,7 +34,7 @@ int main(void) {
 	FILE *fp_csv = NULL;
 		for (int a = NUMBER; a < NUMBER+100*TIER; a++) {
 			FILE * fp = NULL;
-			sprintf(filename, "C:/Users/wsyun/source/repos/Block relocation problem/Benchmark/%d-%d-%d/%05d.txt", TIER, STACK, nblock, a);
+			sprintf(filename, "/home/lab02/s-watanabe/デスクトップ/BlockRelocationProblem/distinctive-double--1/Benchmark/%d-%d-%d/%05d.txt", TIER, STACK, nblock, a);
 			printf("%s\n", filename);
 
 			//	読み込みモードでファイルを開く
