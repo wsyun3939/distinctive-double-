@@ -6,14 +6,14 @@
 #define NBLOCK 45
 #define NUMBER 10701
 #define TEST 1
-#define EITHER 
+#define EITHER
 #define DISTINCTIVE
 #define LIMIT
-typedef  enum DIRECTION{
+typedef enum DIRECTION
+{
 	upper,
 	lower,
 	both
-}	direction;
+} direction;
 
 #endif // !1
-

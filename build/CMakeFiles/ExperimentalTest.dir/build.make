@@ -42,10 +42,10 @@ RM = "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\Users\wsyun\Desktop\cpro\Block Relocation Problem\distinctive-double-"
+CMAKE_SOURCE_DIR = "C:\Users\wsyun\Desktop\Thesis\Block Relocation Problem\distinctive-double-"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Users\wsyun\Desktop\cpro\Block Relocation Problem\distinctive-double-\build"
+CMAKE_BINARY_DIR = "C:\Users\wsyun\Desktop\Thesis\Block Relocation Problem\distinctive-double-\build"
 
 # Utility rule file for ExperimentalTest.
 
@@ -53,7 +53,7 @@ CMAKE_BINARY_DIR = "C:\Users\wsyun\Desktop\cpro\Block Relocation Problem\distinc
 include CMakeFiles/ExperimentalTest.dir/progress.make
 
 CMakeFiles/ExperimentalTest:
-	cd /d C:\Users\wsyun\Desktop\cpro\BLOCKR~1\DISTIN~2\build && "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\ctest.exe" -D ExperimentalTest
+	cd /d C:\Users\wsyun\Desktop\Thesis\BLOCKR~1\DISTIN~2\build && "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\ctest.exe" -D ExperimentalTest
 
 ExperimentalTest: CMakeFiles/ExperimentalTest
 ExperimentalTest: CMakeFiles/ExperimentalTest.dir/build.make
@@ -66,10 +66,10 @@ CMakeFiles/ExperimentalTest.dir/build: ExperimentalTest
 .PHONY : CMakeFiles/ExperimentalTest.dir/build
 
 CMakeFiles/ExperimentalTest.dir/clean:
-	cd /d C:\Users\wsyun\Desktop\cpro\BLOCKR~1\DISTIN~2\build && $(CMAKE_COMMAND) -P CMakeFiles\ExperimentalTest.dir\cmake_clean.cmake
+	cd /d C:\Users\wsyun\Desktop\Thesis\BLOCKR~1\DISTIN~2\build && $(CMAKE_COMMAND) -P CMakeFiles\ExperimentalTest.dir\cmake_clean.cmake
 .PHONY : CMakeFiles/ExperimentalTest.dir/clean
 
 CMakeFiles/ExperimentalTest.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Users\wsyun\Desktop\cpro\Block Relocation Problem\distinctive-double-" "C:\Users\wsyun\Desktop\cpro\Block Relocation Problem\distinctive-double-" "C:\Users\wsyun\Desktop\cpro\Block Relocation Problem\distinctive-double-\build" "C:\Users\wsyun\Desktop\cpro\Block Relocation Problem\distinctive-double-\build" "C:\Users\wsyun\Desktop\cpro\Block Relocation Problem\distinctive-double-\build\CMakeFiles\ExperimentalTest.dir\DependInfo.cmake" --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Users\wsyun\Desktop\Thesis\Block Relocation Problem\distinctive-double-" "C:\Users\wsyun\Desktop\Thesis\Block Relocation Problem\distinctive-double-" "C:\Users\wsyun\Desktop\Thesis\Block Relocation Problem\distinctive-double-\build" "C:\Users\wsyun\Desktop\Thesis\Block Relocation Problem\distinctive-double-\build" "C:\Users\wsyun\Desktop\Thesis\Block Relocation Problem\distinctive-double-\build\CMakeFiles\ExperimentalTest.dir\DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/ExperimentalTest.dir/depend
 

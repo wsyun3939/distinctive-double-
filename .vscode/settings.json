@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
     "files.associations": {
         "intdequeue.h": "c"
     }
+=======
+    "makefile.extensionOutputFolder": "./.vscode"
+>>>>>>> 2e4877f007a5257d18334758e772ed63ae080a3f
 }

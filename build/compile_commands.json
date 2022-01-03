@@ -1,32 +1,32 @@
 [
 {
-  "directory": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/distinctive-double-/build",
-  "command": "C:\\MinGW\\bin\\mingw32-gcc.exe   -g   -o CMakeFiles\\DISTINCTIVE-DOUBLE-.dir\\main.c.obj   -c \"C:\\Users\\wsyun\\Desktop\\cpro\\Block Relocation Problem\\distinctive-double-\\main.c\"",
-  "file": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/distinctive-double-/main.c"
+  "directory": "C:/Users/wsyun/Desktop/Thesis/Block Relocation Problem/distinctive-double-/build",
+  "command": "C:\\MinGW\\bin\\mingw32-gcc.exe   -g   -o CMakeFiles\\DISTINCTIVE-DOUBLE-.dir\\main.c.obj   -c \"C:\\Users\\wsyun\\Desktop\\Thesis\\Block Relocation Problem\\distinctive-double-\\main.c\"",
+  "file": "C:/Users/wsyun/Desktop/Thesis/Block Relocation Problem/distinctive-double-/main.c"
 },
 {
-  "directory": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/distinctive-double-/build",
-  "command": "C:\\MinGW\\bin\\mingw32-gcc.exe   -g   -o CMakeFiles\\DISTINCTIVE-DOUBLE-.dir\\branch_and_bound.c.obj   -c \"C:\\Users\\wsyun\\Desktop\\cpro\\Block Relocation Problem\\distinctive-double-\\branch_and_bound.c\"",
-  "file": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/distinctive-double-/branch_and_bound.c"
+  "directory": "C:/Users/wsyun/Desktop/Thesis/Block Relocation Problem/distinctive-double-/build",
+  "command": "C:\\MinGW\\bin\\mingw32-gcc.exe   -g   -o CMakeFiles\\DISTINCTIVE-DOUBLE-.dir\\branch_and_bound.c.obj   -c \"C:\\Users\\wsyun\\Desktop\\Thesis\\Block Relocation Problem\\distinctive-double-\\branch_and_bound.c\"",
+  "file": "C:/Users/wsyun/Desktop/Thesis/Block Relocation Problem/distinctive-double-/branch_and_bound.c"
 },
 {
-  "directory": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/distinctive-double-/build",
-  "command": "C:\\MinGW\\bin\\mingw32-gcc.exe   -g   -o CMakeFiles\\DISTINCTIVE-DOUBLE-.dir\\EnumerateRelocation.c.obj   -c \"C:\\Users\\wsyun\\Desktop\\cpro\\Block Relocation Problem\\distinctive-double-\\EnumerateRelocation.c\"",
-  "file": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/distinctive-double-/EnumerateRelocation.c"
+  "directory": "C:/Users/wsyun/Desktop/Thesis/Block Relocation Problem/distinctive-double-/build",
+  "command": "C:\\MinGW\\bin\\mingw32-gcc.exe   -g   -o CMakeFiles\\DISTINCTIVE-DOUBLE-.dir\\EnumerateRelocation.c.obj   -c \"C:\\Users\\wsyun\\Desktop\\Thesis\\Block Relocation Problem\\distinctive-double-\\EnumerateRelocation.c\"",
+  "file": "C:/Users/wsyun/Desktop/Thesis/Block Relocation Problem/distinctive-double-/EnumerateRelocation.c"
 },
 {
-  "directory": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/distinctive-double-/build",
-  "command": "C:\\MinGW\\bin\\mingw32-gcc.exe   -g   -o CMakeFiles\\DISTINCTIVE-DOUBLE-.dir\\IntDequeue.c.obj   -c \"C:\\Users\\wsyun\\Desktop\\cpro\\Block Relocation Problem\\distinctive-double-\\IntDequeue.c\"",
-  "file": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/distinctive-double-/IntDequeue.c"
+  "directory": "C:/Users/wsyun/Desktop/Thesis/Block Relocation Problem/distinctive-double-/build",
+  "command": "C:\\MinGW\\bin\\mingw32-gcc.exe   -g   -o CMakeFiles\\DISTINCTIVE-DOUBLE-.dir\\IntDequeue.c.obj   -c \"C:\\Users\\wsyun\\Desktop\\Thesis\\Block Relocation Problem\\distinctive-double-\\IntDequeue.c\"",
+  "file": "C:/Users/wsyun/Desktop/Thesis/Block Relocation Problem/distinctive-double-/IntDequeue.c"
 },
 {
-  "directory": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/distinctive-double-/build",
-  "command": "C:\\MinGW\\bin\\mingw32-gcc.exe   -g   -o CMakeFiles\\DISTINCTIVE-DOUBLE-.dir\\lower_bound.c.obj   -c \"C:\\Users\\wsyun\\Desktop\\cpro\\Block Relocation Problem\\distinctive-double-\\lower_bound.c\"",
-  "file": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/distinctive-double-/lower_bound.c"
+  "directory": "C:/Users/wsyun/Desktop/Thesis/Block Relocation Problem/distinctive-double-/build",
+  "command": "C:\\MinGW\\bin\\mingw32-gcc.exe   -g   -o CMakeFiles\\DISTINCTIVE-DOUBLE-.dir\\lower_bound.c.obj   -c \"C:\\Users\\wsyun\\Desktop\\Thesis\\Block Relocation Problem\\distinctive-double-\\lower_bound.c\"",
+  "file": "C:/Users/wsyun/Desktop/Thesis/Block Relocation Problem/distinctive-double-/lower_bound.c"
 },
 {
-  "directory": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/distinctive-double-/build",
-  "command": "C:\\MinGW\\bin\\mingw32-gcc.exe   -g   -o CMakeFiles\\DISTINCTIVE-DOUBLE-.dir\\support_function.c.obj   -c \"C:\\Users\\wsyun\\Desktop\\cpro\\Block Relocation Problem\\distinctive-double-\\support_function.c\"",
-  "file": "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/distinctive-double-/support_function.c"
+  "directory": "C:/Users/wsyun/Desktop/Thesis/Block Relocation Problem/distinctive-double-/build",
+  "command": "C:\\MinGW\\bin\\mingw32-gcc.exe   -g   -o CMakeFiles\\DISTINCTIVE-DOUBLE-.dir\\support_function.c.obj   -c \"C:\\Users\\wsyun\\Desktop\\Thesis\\Block Relocation Problem\\distinctive-double-\\support_function.c\"",
+  "file": "C:/Users/wsyun/Desktop/Thesis/Block Relocation Problem/distinctive-double-/support_function.c"
 }
 ]
