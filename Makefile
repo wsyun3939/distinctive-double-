@@ -5,5 +5,5 @@ branch_and_bound.o:IntDequeue.h lower_bound.h branch_and_bound.h data_info.h
 main.o:IntDequeue.h lower_bound.h branch_and_bound.h data_info.h
 IntDequeue.o:IntDequeue.h data_info.h lower_bound.h branch_and_bound.h
 lower_bound.o:IntDequeue.h lower_bound.h data_info.h branch_and_bound.h
-support_function.o:ntDequeue.h lower_bound.h branch_and_bound.h data_info.h
+support_function.o:IntDequeue.h lower_bound.h branch_and_bound.h data_info.h
 EnumerateRelocation.o:IntDequeue.h lower_bound.h branch_and_bound.h data_info.h
