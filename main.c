@@ -28,6 +28,8 @@ int main(void) {
 	int i, j, x, l;
 	int k = 0;
 	int sum = 0;
+	double time=0;
+	double time0=0;
 	int sum_either = 0;
 	int LB_sum = 0;
 	char filename[BUFFER];
@@ -54,8 +56,10 @@ int main(void) {
 			
 			//*---LB1---*//
 			int LB1 = lower_bound1(stack);
-			printf("LB1:%d\n", LB1);
 			clock_t end = clock();
+			printf("LB1:%d\n", LB1);
+			printf("time:%d\n", (double)(end - start) / CLOCKS_PER_SEC);
+			time+=(double)(end - start) / CLOCKS_PER_SEC;
 
 			clock_t start0 = clock();
 			// スタック数と高さを読み込む　//
@@ -67,12 +71,12 @@ int main(void) {
 					pre_EnqueRear(&stack0[i], x);
 				}
 			}
-
-			
 			//*---LB1---*//
 			int LB0 = lower_bound1(stack0);
-			printf("LB0:%d\n", LB1);
 			clock_t end0 = clock();
+			printf("LB0:%d\n", LB1);
+			printf("time0:%d\n", (double)(end0 - start0) / CLOCKS_PER_SEC);
+			time+=(double)(end0 - start0) / CLOCKS_PER_SEC;
 /*
 			qsort(stack, STACK, sizeof(IntDequeue), (int(*)(const void *, const void *))pricmp);
 			printf("sort:\n");
@@ -106,6 +110,7 @@ int main(void) {
 		}
 	
 	Array_terminate(stack);
+	printf("pre_time:%f,time:%f\n",time0/(100*TIER),time/(100*TIER));
 	// printf("time:%f,match:%d,ave_relocation:%f\n", (double)(end - start) / CLOCKS_PER_SEC, k,(double)sum/(100*TIER));
 	return 0;
 }
