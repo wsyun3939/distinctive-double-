@@ -4,8 +4,8 @@
 
 
 # Configuration directories and files
-SourceDirectory: C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/distinctive-double-
-BuildDirectory: C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/distinctive-double-/build
+SourceDirectory: C:/Users/wsyun/Desktop/Thesis/Block Relocation Problem/distinctive-double-
+BuildDirectory: C:/Users/wsyun/Desktop/Thesis/Block Relocation Problem/distinctive-double-/build
 
 # Where to place the cost data store
 CostDataFile: 
@@ -36,7 +36,7 @@ ScpCommand: SCPCOMMAND-NOTFOUND
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/cmake.exe" "C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/distinctive-double-"
+ConfigureCommand: "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/cmake.exe" "C:/Users/wsyun/Desktop/Thesis/Block Relocation Problem/distinctive-double-"
 MakeCommand: C:/Program\ Files\ (x86)/Microsoft\ Visual\ Studio/2017/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/cmake.exe --build . --config "${CTEST_CONFIGURATION_TYPE}" -- -i
 DefaultCTestConfigurationType: Release
 

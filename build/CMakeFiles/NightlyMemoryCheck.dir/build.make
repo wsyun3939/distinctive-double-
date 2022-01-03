@@ -42,10 +42,10 @@ RM = "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\Users\wsyun\Desktop\cpro\Block Relocation Problem\distinctive-double-"
+CMAKE_SOURCE_DIR = "C:\Users\wsyun\Desktop\Thesis\Block Relocation Problem\distinctive-double-"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Users\wsyun\Desktop\cpro\Block Relocation Problem\distinctive-double-\build"
+CMAKE_BINARY_DIR = "C:\Users\wsyun\Desktop\Thesis\Block Relocation Problem\distinctive-double-\build"
 
 # Utility rule file for NightlyMemoryCheck.
 
@@ -53,7 +53,7 @@ CMAKE_BINARY_DIR = "C:\Users\wsyun\Desktop\cpro\Block Relocation Problem\distinc
 include CMakeFiles/NightlyMemoryCheck.dir/progress.make
 
 CMakeFiles/NightlyMemoryCheck:
-	cd /d C:\Users\wsyun\Desktop\cpro\BLOCKR~1\DISTIN~2\build && "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\ctest.exe" -D NightlyMemoryCheck
+	cd /d C:\Users\wsyun\Desktop\Thesis\BLOCKR~1\DISTIN~2\build && "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\ctest.exe" -D NightlyMemoryCheck
 
 NightlyMemoryCheck: CMakeFiles/NightlyMemoryCheck
 NightlyMemoryCheck: CMakeFiles/NightlyMemoryCheck.dir/build.make
@@ -66,10 +66,10 @@ CMakeFiles/NightlyMemoryCheck.dir/build: NightlyMemoryCheck
 .PHONY : CMakeFiles/NightlyMemoryCheck.dir/build
 
 CMakeFiles/NightlyMemoryCheck.dir/clean:
-	cd /d C:\Users\wsyun\Desktop\cpro\BLOCKR~1\DISTIN~2\build && $(CMAKE_COMMAND) -P CMakeFiles\NightlyMemoryCheck.dir\cmake_clean.cmake
+	cd /d C:\Users\wsyun\Desktop\Thesis\BLOCKR~1\DISTIN~2\build && $(CMAKE_COMMAND) -P CMakeFiles\NightlyMemoryCheck.dir\cmake_clean.cmake
 .PHONY : CMakeFiles/NightlyMemoryCheck.dir/clean
 
 CMakeFiles/NightlyMemoryCheck.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Users\wsyun\Desktop\cpro\Block Relocation Problem\distinctive-double-" "C:\Users\wsyun\Desktop\cpro\Block Relocation Problem\distinctive-double-" "C:\Users\wsyun\Desktop\cpro\Block Relocation Problem\distinctive-double-\build" "C:\Users\wsyun\Desktop\cpro\Block Relocation Problem\distinctive-double-\build" "C:\Users\wsyun\Desktop\cpro\Block Relocation Problem\distinctive-double-\build\CMakeFiles\NightlyMemoryCheck.dir\DependInfo.cmake" --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Users\wsyun\Desktop\Thesis\Block Relocation Problem\distinctive-double-" "C:\Users\wsyun\Desktop\Thesis\Block Relocation Problem\distinctive-double-" "C:\Users\wsyun\Desktop\Thesis\Block Relocation Problem\distinctive-double-\build" "C:\Users\wsyun\Desktop\Thesis\Block Relocation Problem\distinctive-double-\build" "C:\Users\wsyun\Desktop\Thesis\Block Relocation Problem\distinctive-double-\build\CMakeFiles\NightlyMemoryCheck.dir\DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/NightlyMemoryCheck.dir/depend
 

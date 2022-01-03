@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/wsyun/Desktop/cpro/Block Relocation Problem/distinctive-double-
+# Install script for directory: C:/Users/wsyun/Desktop/Thesis/Block Relocation Problem/distinctive-double-
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
