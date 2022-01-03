@@ -21,7 +21,9 @@ Nblocking_lower_again:下側から移動させた後もブロッキングブロ�
 int main(void) {
 	clock_t start = clock();
 	IntDequeue* stack = malloc(STACK*(sizeof *stack));
+	IntDequeue* stack0 = malloc(STACK*(sizeof *stack0));
 	Array_initialize(stack);
+	Array_initialize(stack0);
 	int nblock = NBLOCK;
 	int i, j, x, l;
 	int k = 0;
@@ -38,6 +40,7 @@ int main(void) {
 			//	読み込みモードでファイルを開く
 			fp=fopen(filename, "r");
 
+			clock_t start = clock();
 			// スタック数と高さを読み込む　//
 			fscanf(fp, "%d %d", &i, &j);
 			for (i = 0; i < STACK; i++) {
@@ -52,7 +55,25 @@ int main(void) {
 			//*---LB1---*//
 			int LB1 = lower_bound1(stack);
 			printf("LB1:%d\n", LB1);
+			clock_t end = clock();
 
+			clock_t start0 = clock();
+			// スタック数と高さを読み込む　//
+			fscanf(fp, "%d %d", &i, &j);
+			for (i = 0; i < STACK; i++) {
+				fscanf(fp, "%d ", &l);
+				for (j = 0; j < l; j++) {
+					fscanf(fp, "%d ", &x);
+					pre_EnqueRear(&stack0[i], x);
+				}
+			}
+
+			
+			//*---LB1---*//
+			int LB0 = lower_bound1(stack0);
+			printf("LB0:%d\n", LB1);
+			clock_t end0 = clock();
+/*
 			qsort(stack, STACK, sizeof(IntDequeue), (int(*)(const void *, const void *))pricmp);
 			printf("sort:\n");
 			Array_print(stack);
@@ -67,7 +88,7 @@ int main(void) {
 			}
 			printf("min_relocation:%d,difference:%d\n", min_relocation, min_relocation - LB1); 
 			fclose(fp);
-			/*if (a % 100 == 1) {
+			if (a % 100 == 1) {
 				sprintf(filename, "C:/Users/wsyun/source/repos/Block relocation problem/Benchmark/%d-%d-%d.csv", TIER, STACK, nblock);
 				fp_csv=fopen(filename, "r");
 			}
@@ -75,15 +96,16 @@ int main(void) {
 			if (x != min_relocation) {
 				printf("missmatch\n");
 				getchar();
-			}*/
-			Array_clear(stack);
-			if (a % 100 == 0) {
+			}
+			*/
+		Array_clear(stack);
+		if (a % 100 == 0) {
 				nblock++;
 				fclose(fp_csv);
 			}
 		}
-	clock_t end = clock();
+	
 	Array_terminate(stack);
-	printf("time:%f,match:%d,ave_relocation:%f\n", (double)(end - start) / CLOCKS_PER_SEC, k,(double)sum/(100*TIER));
+	// printf("time:%f,match:%d,ave_relocation:%f\n", (double)(end - start) / CLOCKS_PER_SEC, k,(double)sum/(100*TIER));
 	return 0;
 }

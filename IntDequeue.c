@@ -122,6 +122,110 @@ int EnqueRear(IntDequeue *q, int x)
 	return -1;
 }
 
+int pre_EnqueFront(IntDequeue *q, int x)
+{
+	if (q->num >= q->max)
+		return -1;							/* キューは満杯 */
+	else {
+		q->num++;
+		if (--q->front < 0)
+			q->front = q->max - 1;
+		q->que[q->front] = x;
+		if (q->num == 1) {			/*初めてエンキューされた時はそこが最小値*/
+			q->min_idx = q->front;
+			return 0;
+		}
+		else if (x < q->que[q->min_idx]) {
+			q->min_idx = q->front;
+			q->dir = lower;
+			return 0;
+		}
+		else;
+	}
+	switch (q->dir) {
+	case lower:
+		q->LB++;
+		if (q->LB == pre_min_relocation(q,upper)) q->dir = both;
+		return 1;
+	case upper:
+		if (q->LB == pre_min_relocation(q,upper)) return 0;
+		else {
+			q->LB++;
+			return 1;
+		}
+	case both:
+		if (q->LB == pre_min_relocation(q,upper)) {
+			q->dir = upper;
+			return 0;
+		}
+		else {
+			q->LB++;
+			return 1;
+		}
+	}
+	return -1;
+}
+
+int pre_EnqueRear(IntDequeue *q, int x)
+{
+	if (q->num >= q->max)
+		return -1;							/* キューは満杯 */
+	else {
+		q->num++;
+		if (q->num == 1) {
+			q->min_idx = q->rear;
+			q->que[q->rear++] = x;
+			if (q->rear == q->max)
+				q->rear = 0;
+			return 0;
+		}
+		else if (x < q->que[q->min_idx]) {
+			q->min_idx = q->rear;
+			q->que[q->rear++] = x;
+			if (q->rear == q->max)
+				q->rear = 0;
+			q->dir = upper;
+			return 0;
+		}
+		q->que[q->rear++] = x;
+		if (q->rear == q->max)
+			q->rear = 0;
+	}
+	switch (q->dir) {
+	case upper:
+		q->LB++;
+		if (q->LB == pre_min_relocation(q,lower)) q->dir = both;
+		return 1;
+	case lower:
+		if (q->LB == pre_min_relocation(q,lower)) return 0;
+		else {
+			q->LB++;
+			return 1;
+		}
+	case both:
+		if (q->LB == pre_min_relocation(q,lower)) {
+			q->dir = lower;
+			return 0;
+		}
+		else {
+			q->LB++;
+			return 1;
+		}
+	}
+	return -1;
+}
+
+int pre_Enque(IntDequeue *q, int x, direction dir)
+{
+	switch (dir) {
+	case lower:
+		return pre_EnqueFront(q, x);
+	case upper:
+		return pre_EnqueRear(q, x);
+	default: return -1;
+	}
+}
+
 int Enque(IntDequeue *q, int x, direction dir)
 {
 	switch (dir) {
@@ -284,6 +388,111 @@ int Deque(IntDequeue *q, int *x, direction dir)
 		return DequeFront(q, x);
 	case upper:
 		return DequeRear(q, x);
+	default: return -1;
+	}
+}
+
+int pre_DequeFront(IntDequeue *q, int *x)
+{
+	if (q->num <= 0)						/* キューは空 */
+		return -1;
+	else {
+		q->num--;
+		*x = q->que[q->front++];
+		if (q->front == q->max)
+			q->front = 0;
+		if (IsEmpty(q)) {
+			q->min_idx = q->front;
+			q->dir = both;
+			q->LB = 0;
+			return 0;
+		}
+		else if (*x == q->que[q->min_idx]) {
+			q->min_idx = SearchMin(q);
+			q->dir = pre_retrieval_direction(q,&q->LB);
+			return 0;
+		}
+	}
+	switch (q->dir) {
+	case lower:
+		q->LB--;
+		return 0;
+	case upper:
+		if ((q->LB - 1) == pre_min_relocation(q,upper)) {
+			q->LB--;
+			return 0;
+		}
+		else {
+			if (pre_min_relocation(q,lower) == q->LB) q->dir = both;
+			return 0;
+		}
+	case both:
+		q->LB--;
+		if (q->LB == pre_min_relocation(q,upper)) {
+			return 0;
+		}
+		else {
+			q->dir = lower;
+			return 0;
+		}
+	}
+	return -1;
+}
+
+/*--- キューの末尾からデータをデキュー ---*/
+int pre_DequeRear(IntDequeue *q, int *x)
+{
+	if (q->num <= 0)						/* キューは空 */
+		return 1;
+	else {
+		q->num--;
+		if (--q->rear < 0)
+			q->rear = q->max - 1;
+		*x = q->que[q->rear];
+		if (IsEmpty(q)) {
+			q->LB = 0;
+			q->dir = both;
+			return 0;
+		}
+		else if (*x == q->que[q->min_idx]) {
+			q->min_idx = SearchMin(q);
+			q->dir = pre_retrieval_direction(q,&q->LB);
+			return 0;
+		}
+	}
+	switch (q->dir) {
+	case upper:
+		q->LB--;
+		return -1;
+	case lower:
+		if ((q->LB - 1) == pre_min_relocation(q,lower)) {
+			q->LB--;
+			return -1;
+		}
+		else {
+			if (pre_min_relocation(q,upper) == q->LB) q->dir = both;
+			return 0;
+		}
+	case both:
+		q->LB--;
+		if (q->LB == pre_min_relocation(q,lower)) {
+			return -1;
+		}
+		else {
+			q->dir = upper;
+			return -1;
+		}
+	}
+	return 1;
+}
+
+int pre_Deque(IntDequeue *q, int *x, direction dir)
+{
+	switch (dir) {
+	case lower:
+		return pre_DequeFront(q, x);
+	case upper:
+		return pre_DequeRear(q, x);
 	default: return -1;
 	}
 }

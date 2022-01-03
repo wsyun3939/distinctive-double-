@@ -95,6 +95,64 @@ int min_relocation(IntDequeue *q, direction dir) {
 	return relocation;
 }
 
+int pre_min_relocation(IntDequeue *q, direction dir) {
+	if (q->num <= 2) {
+		return 0;
+	}
+	int relocation = 0;
+	static IntDequeue *q_temp = NULL;
+	if (q_temp == NULL) {
+		q_temp = malloc(sizeof(*q_temp));
+		Initialize(q_temp);
+		Copy(q_temp, q);
+	}
+	switch (dir) {
+	case lower:
+		relocation=min_relocation_lower(q_temp);
+		if (q_temp != NULL) {
+			Terminate(q_temp);
+			free(q_temp);
+			q_temp = NULL;
+		}
+		return relocation;
+		break;
+	case upper:
+		relocation = min_relocation_upper(q_temp);
+		if (q_temp != NULL) {
+			Terminate(q_temp);
+			free(q_temp);
+			q_temp = NULL;
+		}
+		return relocation;
+		break;
+	case both:
+		while (q_temp->min_idx == q_temp->front || q_temp->min_idx == ((q_temp->rear - 1 < 0) ? q_temp->max - 1 : q_temp->rear - 1)) {
+			if (q_temp->min_idx == q_temp->front) RemoveFront(q_temp);
+			else if (q_temp->min_idx == ((q_temp->rear - 1 < 0) ? q_temp->max - 1 : q_temp->rear - 1)) RemoveRear(q_temp);
+			if (IsEmpty(q_temp)) break;
+		}
+		if (q_temp->num <= 2) {
+			relocation = 0;
+			if (q_temp != NULL) {
+				Terminate(q_temp);
+				free(q_temp);
+				q_temp = NULL;
+			}
+			return relocation;;
+		}
+		else {
+			pre_retrieval_direction(q_temp, &relocation);
+			if (q_temp != NULL) {
+				Terminate(q_temp);
+				free(q_temp);
+				q_temp = NULL;
+			}
+			return relocation;
+		}
+	}
+	return relocation;
+}
+
 
 int min_relocation_upper(IntDequeue *q) {
 	int Nblocking_upper = nblocking_upper(q);

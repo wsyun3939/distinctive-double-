@@ -153,6 +153,54 @@ direction retrieval_direction(IntDequeue *q,int *LB) {
 	return dir;
 }
 
+direction pre_retrieval_direction(IntDequeue *q,int *LB) {
+	int Nblocking_upper = nblocking_upper(q);
+	int Nblocking_lower = nblocking_lower(q);
+	direction dir;
+	if (q->num <= 2) {
+		dir=both;
+		*LB=0;
+	}
+	else {
+		IntDequeue* q_temp = NULL;
+		if (Nblocking_lower < Nblocking_upper) {
+				q_temp = malloc(sizeof(*q_temp));
+				Initialize(q_temp);
+				Copy(q_temp, q);
+				//*---上側から取り出した場合の積み替え最小回数---*//
+				Nblocking_upper = min_relocation(q,upper);
+
+				//*---下側から取り出した場合の積み替え最小回数---*//
+				Nblocking_lower = min_relocation(q_temp,lower);
+
+				Terminate(q_temp);
+				free(q_temp);
+				dir = Nblocking_upper < Nblocking_lower ? upper :
+					Nblocking_upper > Nblocking_lower ? lower : both;
+				if (dir == upper) *LB = Nblocking_upper;
+				else *LB = Nblocking_lower;
+		}
+		else {
+				q_temp = malloc(sizeof(*q_temp));
+				Initialize(q_temp);
+				Copy(q_temp, q);
+				//*---上側から取り出した場合の積み替え最小回数---*//
+				Nblocking_upper = min_relocation(q,upper);
+
+				//*---下側から取り出した場合の積み替え最小回数---*//
+				Nblocking_lower = min_relocation(q_temp,lower);
+
+				Terminate(q_temp);
+				free(q_temp);
+				dir = Nblocking_upper < Nblocking_lower ? upper :
+					Nblocking_upper > Nblocking_lower ? lower : both;
+				if (dir == upper) *LB = Nblocking_upper;
+				else *LB = Nblocking_lower;
+		}
+	}
+	return dir;
+}
+
 //*---下界値優先探索のための比較関数---*//
 int LBcmp(const LB_idx *n1, const LB_idx *n2) {
 	return n1->blocking<n2->blocking ? -1 :

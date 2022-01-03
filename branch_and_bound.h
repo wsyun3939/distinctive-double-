@@ -29,6 +29,8 @@ void insert_front(IntDequeue *q, int stack_idx);
 //*---ブロックを取り出す方向を決める---*//
 direction retrieval_direction(IntDequeue *q,int *LB);
 
+direction pre_retrieval_direction(IntDequeue *q,int *LB);
+
 //*---下界値優先探索のための比較関数---*//
 int LBcmp(const LB_idx *n1, const LB_idx *n2);
 

@@ -28,6 +28,13 @@ int EnqueRear(IntDequeue *q, int x);
 
 int Enque(IntDequeue *q, int x, direction dir);
 
+int pre_EnqueFront(IntDequeue *q, int x);
+
+/*--- キューの末尾にデータをエンキュー(下界値計算も行う) ---*/
+int pre_EnqueRear(IntDequeue *q, int x);
+
+int pre_Enque(IntDequeue *q, int x, direction dir);
+
 int PushFront(IntDequeue *q, int x);
 
 int PushRear(IntDequeue *q, int x);
@@ -41,6 +48,13 @@ int DequeFront(IntDequeue *q, int *x);
 int DequeRear(IntDequeue *q, int *x);
 
 int Deque(IntDequeue *q, int *x, direction dir);
+
+int pre_DequeFront(IntDequeue *q, int *x);
+
+/*--- キューの末尾からデータをデキュー(下界値計算も行う) ---*/
+int pre_DequeRear(IntDequeue *q, int *x);
+
+int pre_Deque(IntDequeue *q, int *x, direction dir);
 
 /*---先頭のデータを削除---*/
 int RemoveFront(IntDequeue *q);
