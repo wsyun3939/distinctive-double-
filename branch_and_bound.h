@@ -42,6 +42,8 @@ int UpperBound(const IntDequeue *q, direction dir);
 
 LB_idx *CreateBlockingTable(IntDequeue *q, direction dir, int *Size);
 
+void printBlockingTable(LB_idx *BlockingTable, int Size);
+
 //*---全列挙により最適値を求める---*//
 int enumerate_relocation(IntDequeue *q, int depth, direction Dir);
 

@@ -285,10 +285,16 @@ int UpperBound(const IntDequeue *q, direction dir)
 				if (q_temp[0].front == q_temp[0].min_idx)
 				{
 					DequeFront(&q_temp[0], &num_ret);
+#if UB_TEST == 0
+					Array_print(q_temp);
+#endif
 				}
 				else if ((q_temp[0].front + q_temp[0].num - 1) % q_temp[0].max == q_temp[0].min_idx)
 				{
 					DequeRear(&q_temp[0], &num_ret);
+#if UB_TEST == 0
+					Array_print(q_temp);
+#endif
 				}
 				if (insert_sort(q_temp))
 				{
@@ -343,6 +349,9 @@ int UpperBound(const IntDequeue *q, direction dir)
 					Deque(&q_temp[0], &num_ret, dir);
 					Deque(&q_temp[0], &num_ret, dir);
 					insert_media(q_temp, 0);
+#if UB_TEST == 0
+					Array_print(q_temp);
+#endif
 					break;
 				}
 			}
@@ -351,6 +360,9 @@ int UpperBound(const IntDequeue *q, direction dir)
 				Deque(&q_temp[0], &num_ret, dir);
 				Enque(&q_temp[STACK - 1], num_ret, dir);
 				insert_media(q_temp, STACK - 1);
+#if UB_TEST == 0
+				Array_print(q_temp);
+#endif
 				break;
 			}
 			BlockingTable = CreateBlockingTable(q_temp, dir, &j);
@@ -361,6 +373,9 @@ int UpperBound(const IntDequeue *q, direction dir)
 				Deque(&q_temp[0], &num_ret, dir);
 				Enque(&q_temp[BlockingTable[i].idx], num_ret, BlockingTable[i].dir);
 				insert_media(q_temp, BlockingTable[i].idx);
+#if UB_TEST == 0
+				Array_print(q_temp);
+#endif
 				break;
 			}
 			if (i >= 0)
@@ -374,6 +389,9 @@ int UpperBound(const IntDequeue *q, direction dir)
 					Deque(&q_temp[0], &num_ret, dir);
 					Enque(&q_temp[BlockingTable[i].idx], num_ret, BlockingTable[i].dir);
 					insert_media(q_temp, BlockingTable[i].idx);
+#if UB_TEST == 0
+					Array_print(q_temp);
+#endif
 					break;
 				}
 			}
@@ -401,11 +419,11 @@ LB_idx *CreateBlockingTable(IntDequeue *q, direction dir, int *Size)
 		}
 	}
 	*Size = 2 * j + 1;
-	LB_idx *BlockingTable = malloc(j * (sizeof *BlockingTable));
+	LB_idx *BlockingTable = malloc(*Size * (sizeof *BlockingTable));
+	Deque(&q[0], &PriorityEdge, dir);
 	switch (dir)
 	{
 	case lower:
-		PriorityEdge = q[0].que[q[0].front];
 		//*最上部のブロックを動かした際の下界値*//
 		BlockingTable[2 * j].blocking = EnqueRear(&q[0], PriorityEdge);
 		BlockingTable[2 * j].idx = 0;
@@ -413,7 +431,6 @@ LB_idx *CreateBlockingTable(IntDequeue *q, direction dir, int *Size)
 		DequeRear(&q[0], &PriorityEdge);
 		break;
 	case upper:
-		PriorityEdge = q[0].que[(q[0].front + q[0].num - 1) % q[0].max];
 		//*最下部のブロックを動かした際の下界値*//
 		BlockingTable[2 * j].blocking = EnqueFront(&q[0], PriorityEdge);
 		BlockingTable[2 * j].idx = 0;
@@ -427,6 +444,7 @@ LB_idx *CreateBlockingTable(IntDequeue *q, direction dir, int *Size)
 		//*最下部のブロックを動かした際の下界値*//
 		BlockingTable[i].blocking = EnqueFront(&q[stack_idx[i]], PriorityEdge);
 		BlockingTable[i].idx = stack_idx[i];
+		BlockingTable[i].dir = lower;
 		DequeFront(&q[stack_idx[i]], &PriorityEdge);
 	}
 	// 上側からの積み替え
@@ -435,8 +453,22 @@ LB_idx *CreateBlockingTable(IntDequeue *q, direction dir, int *Size)
 		//*最上部のブロックを動かした際の下界値*//
 		BlockingTable[j + i].blocking = EnqueRear(&q[stack_idx[i]], PriorityEdge);
 		BlockingTable[j + i].idx = stack_idx[i];
+		BlockingTable[j + i].dir = upper;
 		DequeRear(&q[stack_idx[i]], &PriorityEdge);
 	}
+	Enque(&q[0], PriorityEdge, dir);
 	free(stack_idx);
 	return BlockingTable;
+}
+
+// ブロッキングテーブルを表示する
+void printBlockingTable(LB_idx *BlockingTable, int Size)
+{
+	int i = 0;
+	for (i = 0; i < Size; i++)
+	{
+		printf("BlockingTable[%d].blocking = %d\n", i, BlockingTable[i].blocking);
+		printf("BlockingTable[%d].idx = %d\n", i, BlockingTable[i].idx);
+		printf("BlockingTable[%d].dir = %d\n", i, BlockingTable[i].dir);
+	}
 }

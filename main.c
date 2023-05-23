@@ -21,6 +21,7 @@ Nblocking_lower_again:下側から移動させた後もブロッキングブロ�
 int main(void)
 {
 	clock_t start, end;
+	clock_t max = 0;
 	IntDequeue *stack = malloc(STACK * (sizeof *stack));
 	IntDequeue *stack0 = malloc(STACK * (sizeof *stack0));
 	Array_initialize(stack);
@@ -86,8 +87,12 @@ int main(void)
 		int depth = 0;
 		int UB = UpperBound(stack, both);
 		int UB_cur = LB1;
-		int min_relocation = branch_and_bound(stack, UB, UB_cur, LB1, both, NULL, 0);
+		int min_relocation = branch_and_bound(stack, UB, UB_cur, LB1, both);
 		end = clock();
+		if (end - start > max)
+		{
+			max = end - start;
+		}
 		time += end - start;
 		// int min_relocation = enumerate_relocation(stack, depth,both);
 		sum += min_relocation;
@@ -118,6 +123,6 @@ int main(void)
 
 	Array_terminate(stack);
 	// printf("pre_time:%f,time:%f\n", time0 / (100 * TIER), time / (100 * TIER));
-	printf("time:%f,match:%d,ave_relocation:%f\n", (double)time / CLOCKS_PER_SEC, k, (double)sum / (100 * TIER));
+	printf("avg_time:%f,max_time:%f,match:%d,ave_relocation:%f\n", (double)time / (CLOCKS_PER_SEC * 100 * TIER), (double)max / CLOCKS_PER_SEC, k, (double)sum / (100 * TIER));
 	return 0;
 }

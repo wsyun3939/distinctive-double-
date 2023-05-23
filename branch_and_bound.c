@@ -21,7 +21,6 @@ int branch_and_bound(IntDequeue *q, int UB, int UB_cur, int LB, direction Dir)
 	}
 	int i = 0;
 	int j = 0;
-	int Size = 0;
 	int PriorityEdge = 0;
 	int TableSize = 0;
 	direction dir = Dir;
@@ -41,10 +40,12 @@ int branch_and_bound(IntDequeue *q, int UB, int UB_cur, int LB, direction Dir)
 #endif
 
 		LB--;
+		printf("LB=%d\n", LB);
 		if (dir == lower)
 		{
 			PriorityEdge = q[0].que[q[0].front];
 			SecondPosition = (q[0].front + 1) % q[0].max;
+			printf("%d\n", SecondPosition);
 		}
 		else if (dir == upper)
 		{
@@ -91,22 +92,47 @@ int branch_and_bound(IntDequeue *q, int UB, int UB_cur, int LB, direction Dir)
 			}
 		}
 		BlockingTable = CreateBlockingTable(q, dir, &TableSize);
+		// printBlockingTable(BlockingTable, TableSize);
 		if (DirNext != both)
 		{
 			Deque(&q[0], &num_ret, dir);
-			if (LB + depth == UB_cur)
+			for (i = TableSize - 1; i >= 0; i--)
+			{
+				if (BlockingTable[i].blocking == 0)
+				{
+					Enque(&q[BlockingTable[i].idx], PriorityEdge, BlockingTable[i].dir);
+
+#if TEST == 0
+					Array_print(q);
+#endif
+
+					if (branch_and_bound(q, UB, UB_cur, LB, DirNext))
+					{
+						free(BlockingTable);
+						return MinRelocation;
+					}
+					Deque(&q[BlockingTable[i].idx], &num_ret, BlockingTable[i].dir);
+				}
+			}
+			LB++;
+			if (LB + depth <= UB_cur)
 			{
 				for (i = TableSize - 1; i >= 0; i--)
 				{
-					if (BlockingTable[i].blocking == 0)
+					if (BlockingTable[i].blocking == 1)
 					{
 						Enque(&q[BlockingTable[i].idx], PriorityEdge, BlockingTable[i].dir);
+
+#if TEST == 0
+						Array_print(q);
+#endif
 						if (branch_and_bound(q, UB, UB_cur, LB, DirNext))
 						{
 							free(BlockingTable);
 							return MinRelocation;
 						}
 					}
+					Deque(&q[BlockingTable[i].idx], &num_ret, BlockingTable[i].dir);
 				}
 			}
 		}
@@ -118,7 +144,7 @@ int branch_and_bound(IntDequeue *q, int UB, int UB_cur, int LB, direction Dir)
 			Deque(&q_temp[0], &num_ret, dir);
 			for (i = TableSize - 1; i >= 0; i--)
 			{
-				if (BlockingTable[i].blocking == 0)
+				if (BlockingTable[i].blocking == 1)
 					continue;
 				Enque(&q_temp[BlockingTable[i].idx], PriorityEdge, BlockingTable[i].dir);
 
@@ -139,12 +165,41 @@ int branch_and_bound(IntDequeue *q, int UB, int UB_cur, int LB, direction Dir)
 				Array_print(q_temp);
 #endif
 
-				Deque(&q_temp[0], &num_ret, dir);
+				Deque(&q_temp[BlockingTable[i].idx], &num_ret, dir);
 			}
-			free(BlockingTable);
-			Array_terminate(q_temp);
-			free(q_temp);
+			LB++;
+			if (LB + depth <= UB_cur)
+			{
+				for (i = TableSize - 1; i >= 0; i--)
+				{
+					if (BlockingTable[i].blocking == 0)
+						continue;
+					Enque(&q_temp[BlockingTable[i].idx], PriorityEdge, BlockingTable[i].dir);
+
+#if TEST == 0
+					Array_print(q_temp);
+#endif
+
+					if (branch_and_bound(q_temp, UB, UB_cur, LB, DirNext))
+					{
+						free(BlockingTable);
+						Array_terminate(q_temp);
+						free(q_temp);
+						return MinRelocation;
+					}
+					Array_copy(q_temp, q);
+
+#if TEST == 0
+					Array_print(q_temp);
+#endif
+
+					Deque(&q_temp[BlockingTable[i].idx], &num_ret, dir);
+				}
+				Array_terminate(q_temp);
+				free(q_temp);
+			}
 		}
+		free(BlockingTable);
 		depth--;
 		return 0;
 	}
