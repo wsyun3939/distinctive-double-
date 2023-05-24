@@ -2,10 +2,10 @@
 #define ___data_info
 
 #define TIER 5
-#define STACK 6
-#define NBLOCK 26
-#define NUMBER 837
-#define TEST 0
+#define STACK 10
+#define NBLOCK 45
+#define NUMBER 10701
+#define TEST 1
 #define UB_TEST 1
 #define EITHER
 #define DISTINCTIVE

@@ -40,12 +40,11 @@ int branch_and_bound(IntDequeue *q, int UB, int UB_cur, int LB, direction Dir)
 #endif
 
 		LB--;
-		printf("LB=%d\n", LB);
+		// printf("LB=%d\n", LB);
 		if (dir == lower)
 		{
 			PriorityEdge = q[0].que[q[0].front];
 			SecondPosition = (q[0].front + 1) % q[0].max;
-			printf("%d\n", SecondPosition);
 		}
 		else if (dir == upper)
 		{
@@ -93,9 +92,9 @@ int branch_and_bound(IntDequeue *q, int UB, int UB_cur, int LB, direction Dir)
 		}
 		BlockingTable = CreateBlockingTable(q, dir, &TableSize);
 		// printBlockingTable(BlockingTable, TableSize);
+		Deque(&q[0], &num_ret, dir);
 		if (DirNext != both)
 		{
-			Deque(&q[0], &num_ret, dir);
 			for (i = TableSize - 1; i >= 0; i--)
 			{
 				if (BlockingTable[i].blocking == 0)
@@ -141,7 +140,6 @@ int branch_and_bound(IntDequeue *q, int UB, int UB_cur, int LB, direction Dir)
 			q_temp = malloc(STACK * (sizeof *q_temp));
 			Array_initialize(q_temp);
 			Array_copy(q_temp, q);
-			Deque(&q_temp[0], &num_ret, dir);
 			for (i = TableSize - 1; i >= 0; i--)
 			{
 				if (BlockingTable[i].blocking == 1)
@@ -165,7 +163,6 @@ int branch_and_bound(IntDequeue *q, int UB, int UB_cur, int LB, direction Dir)
 				Array_print(q_temp);
 #endif
 
-				Deque(&q_temp[BlockingTable[i].idx], &num_ret, dir);
 			}
 			LB++;
 			if (LB + depth <= UB_cur)
@@ -193,12 +190,12 @@ int branch_and_bound(IntDequeue *q, int UB, int UB_cur, int LB, direction Dir)
 					Array_print(q_temp);
 #endif
 
-					Deque(&q_temp[BlockingTable[i].idx], &num_ret, dir);
 				}
 				Array_terminate(q_temp);
 				free(q_temp);
 			}
 		}
+		Enque(&q[0], PriorityEdge, dir);
 		free(BlockingTable);
 		depth--;
 		return 0;
