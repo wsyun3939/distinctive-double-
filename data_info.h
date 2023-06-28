@@ -2,9 +2,9 @@
 #define ___data_info
 
 #define TIER 6
-#define STACK 10
-#define NBLOCK 54
-#define NUMBER 11201
+#define STACK 8
+#define NBLOCK 42
+#define NUMBER 6201
 #define TEST 1
 #define EITHER
 #define DISTINCTIVE
