@@ -102,7 +102,6 @@ int main(void)
 		if (a % 100 == 0)
 		{
 			nblock++;
-			fclose(fp_csv);
 		}
 	}
 
