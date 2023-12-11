@@ -34,75 +34,72 @@ int main(void)
 	int sum_either = 0;
 	int LB_sum = 0;
 	char filename[BUFFER];
-	FILE *fp_csv = NULL;
-	for (int a = NUMBER; a < NUMBER + 100 * TIER; a++)
+	FILE *fp_write = NULL;
+	for (int itr = 0; itr < TIER; itr++)
 	{
-		FILE *fp = NULL;
-		sprintf(filename, "../Benchmark/%d-%d-%d/%05d.txt", TIER, STACK, nblock, a);
-		printf("%s\n", filename);
-
-		//	読み込みモードでファイルを開く
-		fp = fopen(filename, "r");
-
-		start = clock();
-		// スタック数と高さを読み込む　//
-		fscanf(fp, "%d %d", &i, &j);
-		for (i = 0; i < STACK; i++)
+		for (int a = 1; a <= 100; a++)
 		{
-			fscanf(fp, "%d ", &l);
-			for (j = 0; j < l; j++)
+			FILE *fp = NULL;
+			sprintf(filename, "../Benchmark2D/%d-%d-%d/%05d.txt", TIER, STACK, nblock, a);
+			printf("%s\n", filename);
+
+			//	読み込みモードでファイルを開く
+			fp = fopen(filename, "r");
+
+			// スタック数と高さを読み込む　//
+			for (i = 0; i < STACK; i++)
 			{
-				fscanf(fp, "%d ", &x);
-				EnqueRear(&stack[i], x);
+				for (j = 0; j < TIER; j++)
+				{
+					fscanf(fp, "%d ", &x);
+					if (x != 0)
+						EnqueRear(&stack[i], x);
+				}
 			}
-		}
 
-		//*---LB1---*//
-		int LB1 = lower_bound1(stack);
-		printf("LB1:%d\n", LB1);
-		// printf("time:%d\n", (double)(end - start) / CLOCKS_PER_SEC);
+			start = clock();
 
-		qsort(stack, STACK, sizeof(IntDequeue), (int (*)(const void *, const void *))pricmp);
-		printf("sort:\n");
-		Array_print(stack);
-		int depth = 0;
-		int UB = UpperBound(stack, both);
-		int UB_cur = LB1;
-		int min_relocation = branch_and_bound(stack, UB, UB_cur, LB1, both);
-		end = clock();
-		if (end - start > max)
-		{
-			max = end - start;
+			//*---LB1---*//
+			int LB1 = lower_bound1(stack);
+			printf("LB1:%d\n", LB1);
+			// printf("time:%d\n", (double)(end - start) / CLOCKS_PER_SEC);
+
+			qsort(stack, STACK, sizeof(IntDequeue), (int (*)(const void *, const void *))pricmp);
+			printf("sort:\n");
+			Array_print(stack);
+			int depth = 0;
+			int UB = UpperBound(stack, both);
+			int UB_cur = LB1;
+			int min_relocation = branch_and_bound(stack, UB, UB_cur, LB1, both);
+			end = clock();
+			if (end - start > max)
+			{
+				max = end - start;
+			}
+			time += end - start;
+			sum += min_relocation;
+			gap += min_relocation - LB1;
+			if (min_relocation - LB1 > max_gap)
+			{
+				max_gap = min_relocation - LB1;
+			}
+			if (min_relocation == LB1)
+			{
+				k++;
+			}
+			printf("min_relocation:%d,difference:%d\n", min_relocation, min_relocation - LB1);
+			fclose(fp);
+			if (a % 100 == 1)
+			{
+				sprintf(filename, "../Benchmark2D/%d-%d-%d(bb2d).csv", TIER, STACK, nblock);
+				fp_write = fopen(filename, "w");
+			}
+			if (fp_write != NULL)
+				fprintf(fp_write, "%d\n", min_relocation);
+			Array_clear(stack);
 		}
-		time += end - start;
-		sum += min_relocation;
-		gap += min_relocation - LB1;
-		if (min_relocation - LB1 > max_gap)
-		{
-			max_gap = min_relocation - LB1;
-		}
-		if (min_relocation == LB1)
-		{
-			k++;
-		}
-		printf("min_relocation:%d,difference:%d\n", min_relocation, min_relocation - LB1);
-		fclose(fp);
-		// if (a % 100 == 1)
-		// {
-		// 	sprintf(filename, "../Benchmark/%d-%d-%d.csv", TIER, STACK, nblock);
-		// 	fp_csv = fopen(filename, "r");
-		// }
-		// fscanf(fp_csv, "%d ", &x);
-		// if (x != min_relocation)
-		// {
-		// 	printf("missmatch\n");
-		// 	getchar();
-		// }
-		Array_clear(stack);
-		if (a % 100 == 0)
-		{
-			nblock++;
-		}
+		nblock++;
+		fclose(fp_write);
 	}
 
 	Array_terminate(stack);
